@@ -27,8 +27,8 @@ endif (TINYGLTF_BUILD_VALIDATOR_EXAMPLE)
 #
 INSTALL ( FILES
   json.hpp
-  stb_image.h
-  stb_image_write.h
+  #stb_image.h # not compatible with Pixelator dependencies
+  #stb_image_write.h
   tiny_gltf.h
   DESTINATION
   include

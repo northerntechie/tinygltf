@@ -2657,9 +2657,15 @@ bool ReadWholeFile(std::vector<unsigned char> *out, std::string *err,
     return false;
   }
 
-  f.seekg(0, f.end);
+  if (!f.is_open()) {
+    if (err) {
+      (*err) += "File does not exist: " + filepath + "\n";
+    }
+  }
+
+  f.seekg(0, std::ios_base::end);
   size_t sz = static_cast<size_t>(f.tellg());
-  f.seekg(0, f.beg);
+  f.seekg(std::ios_base::beg);
 
   if (int64_t(sz) < 0) {
     if (err) {
